@@ -3,7 +3,7 @@ const express=require('express');
 const app=express();
 const verify=require('./Routes/verifytoken');
 const cors=require('cors');
-
+app.use(cors());
 //environment variables
 const dotenv=require('dotenv');
 dotenv.config();
@@ -16,7 +16,12 @@ mongoose.connect(process.env.DB,
     console.log("connected to database mongo");
 }
 );
-
+app.post('/test',(req,res)=>{
+    res.send(req.body);
+})
+app.get('/',(req,res)=>{
+    res.send("api working");
+});
 
 //authentication routes
 const authroutes= require('./Routes/auth.js');
@@ -25,11 +30,10 @@ const authroutes= require('./Routes/auth.js');
 //middlewares
 app.use('/user',authroutes);
 app.use(express.json());
-app.use(cors());
+
 
 //private
 app.get('/private',verify,(req,res)=>{
-
     res.send("This is private route and you accessed it");
 });
 
