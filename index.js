@@ -5,6 +5,7 @@ const verify=require('./Routes/verifytoken');
 const cors=require('cors');
 app.use(cors());
 //environment variables
+//nothing
 const dotenv=require('dotenv');
 dotenv.config();
 
