@@ -2,7 +2,7 @@
 const express=require('express');
 const app=express();
 const verify=require('./Routes/verifytoken');
-
+const cors=require('cors');
 
 //environment variables
 const dotenv=require('dotenv');
@@ -25,7 +25,7 @@ const authroutes= require('./Routes/auth.js');
 //middlewares
 app.use('/user',authroutes);
 app.use(express.json());
-
+app.use(cors());
 
 //private
 app.get('/private',verify,(req,res)=>{
